@@ -91,6 +91,15 @@ export async function handleIncomingMessage(req: Request, res: Response) {
     return res.sendStatus(200);
   }
 
+  if (user.registrationState !== "ACTIVE") {
+  await twilio.sendWhatsApp(
+    phone,
+    "Let’s finish setting things up first."
+  );
+  return res.sendStatus(200);
+}
+
+
   /* -------- TRIAGE -------- */
 
   let triage;
