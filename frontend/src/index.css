@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300..700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #f9f506;
+  --color-background-light: #f8f8f5;
+  --color-background-dark: #23220f;
+  --color-whatsapp: #25d366;
+
+  --font-spline-sans: "Spline Sans", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply font-spline-sans;
+
+  overflow-x: hidden;
+}
