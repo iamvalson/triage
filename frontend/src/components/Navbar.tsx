@@ -35,7 +35,10 @@ const Navbar = () => {
           </div>
 
           <div className="bg-black flex items-center h-9 px-4 rounded-full hover:scale-105 transition-transform">
-            <a href="" className="text-primary font-bold text-sm">
+            <a
+              href="https://wa.me/+14155238886"
+              className="text-primary font-bold text-sm"
+            >
               Start Chat
             </a>
           </div>

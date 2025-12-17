@@ -32,7 +32,7 @@ const Steps = () => {
               <p className="text-gray-600 text-sm leading-relaxed">
                 Add{" "}
                 <span className="bg-primary/30 px-1.5 py-0.5 rounded font-mono text-xs">
-                  +234 123-456-789
+                  +1 415 523 8886
                 </span>{" "}
                 to your contacts as "Triage".
               </p>
