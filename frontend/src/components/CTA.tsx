@@ -16,7 +16,7 @@ const CTA = () => {
               and your family.
             </p>
             <a
-              href="https://wa.me/+14155238886?text=join%20interest-her"
+              href="https://wa.me/+14155238886?text=join%20mixture-ten"
               target="_blank"
               className="flex h-12 min-w-50 items-center justify-center gap-2 rounded-full bg-primary px-8 text-base font-bold text-black transition-transform hover:scale-105 active:scale-95"
             >
