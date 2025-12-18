@@ -35,13 +35,13 @@ export async function handleIncomingMessage(req: Request, res: Response) {
       phone,
       "Hi there 👋\n\nI’m here to help in health emergencies.\n\nWhat’s your name?"
     );
-    return res.sendStatus(200);
+    return
   }
 
   if (user.registrationState === "AWAITING_NAME") {
     if (!text || text.length < 2) {
       await twilio.sendWhatsApp(phone, "Please send a valid name.");
-      return res.sendStatus(200);
+      return
     }
 
     user.name = text;
@@ -52,7 +52,7 @@ export async function handleIncomingMessage(req: Request, res: Response) {
       phone,
       `Thanks, ${user.name}.\n\nPlease send at least ONE emergency contact number.\nExample:\n+2348012345678`
     );
-    return res.sendStatus(200);
+    return
   }
 
   if (user.registrationState === "AWAITING_CONTACTS") {
@@ -67,7 +67,7 @@ export async function handleIncomingMessage(req: Request, res: Response) {
         phone,
         "I need at least one valid phone number to continue."
       );
-      return res.sendStatus(200);
+      return
     }
 
     user.emergencyContacts = contacts;
@@ -79,7 +79,7 @@ export async function handleIncomingMessage(req: Request, res: Response) {
       "You're all set.\n\nYou can describe symptoms anytime, or tap Emergency Help if needed."
     );
     await twilio.sendWhatsAppWithActions(phone);
-    return res.sendStatus(200);
+    return
   }
 
 
@@ -94,7 +94,7 @@ export async function handleIncomingMessage(req: Request, res: Response) {
         phone,
         "SOS already triggered recently. Help is on the way."
       );
-      return res.sendStatus(200);
+      return
     }
 
     user.lastSOSAt = new Date();
@@ -105,7 +105,7 @@ export async function handleIncomingMessage(req: Request, res: Response) {
       phone,
       "Emergency help has been triggered.\nYour contacts have been notified."
     );
-    return res.sendStatus(200);
+    return
   }
 
 /* -------- BUTTON ACTIONS -------- */
@@ -117,7 +117,7 @@ if (body.ButtonPayload === "ACTION_HOSPITAL") {
     "1️⃣ Use the attachment (paperclip) icon → Location\n" +
     "2️⃣ Or type your address like this: Location: <your address>"
   );
-  return res.sendStatus(200);
+  return
 }
 
 /* -------- LOCATION HANDLING -------- */
@@ -138,7 +138,7 @@ if (body.Latitude && body.Longitude) {
       lon = coords.lon;
     } catch (err) {
       await twilio.sendWhatsApp(phone, "Sorry, I couldn't find that address. Please try again.");
-      return res.sendStatus(200);
+      return
     }
   }
 }
@@ -153,7 +153,7 @@ if (lat && lon) {
   } catch {
     await twilio.sendWhatsApp(phone, "No nearby facilities were found within 5km.");
   }
-  return res.sendStatus(200);
+  return
 }
 
 
@@ -165,7 +165,7 @@ if (lat && lon) {
       phone,
       "Please send the emergency contact number(s)."
     );
-    return res.sendStatus(200);
+    return
   }
 
   /* -------- TRIAGE -------- */
@@ -183,7 +183,7 @@ if (lat && lon) {
       phone,
       "I couldn’t understand that. Please try again."
     );
-    return res.sendStatus(200);
+    return
   }
 
   let message = `Here’s what you can do right now:\n\n${triage.first_aid}`;
@@ -199,7 +199,7 @@ if (lat && lon) {
     await triggerSOS(user, body, triage);
   }
 
-  return res.sendStatus(200);
+  return
 }
 
 async function triggerSOS(user: any, body: TwilioBody, triage?: any) {
