@@ -58,7 +58,7 @@ export async function sendWhatsAppWithActions(
   await client.messages.create({
     from: config.twilio.whatsappNumber,
     to: formattedTo,
-    contentSid: 'HXd26015a538efd064fa9f544ca53bef83',
+    contentSid: config.twilio.templateSid,
   });
 }
 

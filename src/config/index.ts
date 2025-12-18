@@ -8,7 +8,8 @@ export default {
     sid: process.env.TWILIO_ACCOUNT_SID!,
     token: process.env.TWILIO_AUTH_TOKEN!,
     whatsappNumber: process.env.TWILIO_WHATSAPP_NUMBER!,
-    smsNumber: process.env.TWILIO_SMS_NUMBER!
+    smsNumber: process.env.TWILIO_SMS_NUMBER!,
+    templateSid: process.env.TWILIO_TEMPLATE_SID!,
   },
   geminiKey: process.env.GEMINI_API_KEY!,
   baseUrl: process.env.BASE_URL || "http://localhost:3000",
