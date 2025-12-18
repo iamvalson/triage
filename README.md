@@ -12,7 +12,7 @@ npm install
 npm run dev
 ```
 
-##Tech Stack
+## Tech Stack
 - TypeSCript
 - React
 - Tailwindcss
