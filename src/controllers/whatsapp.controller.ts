@@ -170,18 +170,13 @@ if (lat && lon) {
 
   /* -------- TRIAGE -------- */
 
-  let triage = {
-    is_critical: false,
-    specialization: "General Medicine",
-    first_aid: "If symptoms persist or worsen, please seek medical care.",
-    confidence: 0.4,
-  };
-  // if (body.MediaUrl0?.includes("audio")) {
-  //   const audio = await twilio.downloadMedia(body.MediaUrl0);
-  //   triage = await ai.triageSymptom(audio, true);
-  // } else if (text) {
-  //   triage = await ai.triageSymptom(text, false);
-  // }
+  let triage;
+  if (body.MediaUrl0?.includes("audio")) {
+    const audio = await twilio.downloadMedia(body.MediaUrl0);
+    triage = await ai.triageSymptom(audio, true);
+  } else if (text) {
+    triage = await ai.triageSymptom(text, false);
+  }
 
   if (!triage) {
     await twilio.sendWhatsApp(

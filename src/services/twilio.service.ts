@@ -25,9 +25,10 @@ export async function sendSMS(to: string, body: string) {
  * Simulates "typing…" (WhatsApp has no real typing indicator)
  */
 export async function simulateTyping(to: string) {
+  const formatted = to.startsWith("whatsapp:") ? to : `whatsapp:${to}`;
   await client.messages.create({
     from: config.twilio.whatsappNumber,
-    to: `whatsapp:${to}`,
+    to: formatted,
     body: "Typing…",
   });
 }
@@ -50,7 +51,7 @@ export async function downloadMedia(url: string): Promise<Buffer> {
 export async function sendWhatsAppWithActions(
   to: string,
 ) {
-  const formattedTo = to.startsWith("whatsapp:")
+  const formattedTo = to.startsWith("whatsapp:") 
     ? to
     : `whatsapp:${to}`;
 
