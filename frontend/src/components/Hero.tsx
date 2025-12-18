@@ -43,7 +43,7 @@ const Hero = () => {
 
           <div>
             <a
-              href="https://wa.me/+14155238886?text=join%20interest-her"
+              href="https://wa.me/+14155238886?text=join%20mixture-ten"
               target="_blank"
               className="group relative flex flex-row h-11 md:h-14 min-w-50 md:min-w-60 items-center justify-center gap-3 overflow-hidden rounded-full bg-whatsapp px-2 md:px-8 text-white transition-all hover:shadow-xl hover:shadow-green-500/20 active:scale-95"
             >
