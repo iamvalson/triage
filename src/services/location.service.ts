@@ -1,5 +1,24 @@
 import axios from "axios";
 
+
+export async function geocodeAddress(address: string): Promise<{ lat: number, lon: number }> {
+  const response = await axios.get("https://nominatim.openstreetmap.org/search", {
+    params: {
+      q: address,
+      format: "json",
+      limit: 1,
+    },
+  });
+
+  if (!response.data || response.data.length === 0) {
+    throw new Error("Address not found");
+  }
+
+  const { lat, lon } = response.data[0];
+  return { lat: Number(lat), lon: Number(lon) };
+}
+
+
 const OVERPASS_URL = "https://overpass-api.de/api/interpreter";
 
 export async function findNearestSpecialist(

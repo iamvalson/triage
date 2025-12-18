@@ -15,7 +15,7 @@ export async function sendWhatsApp(to: string, body: string) {
 
 export async function sendSMS(to: string, body: string) {
   await client.messages.create({
-    from: config.twilio.whatsappNumber,
+    from: config.twilio.smsNumber,
     to,
     body,
   });
@@ -25,14 +25,11 @@ export async function sendSMS(to: string, body: string) {
  * Simulates "typing…" (WhatsApp has no real typing indicator)
  */
 export async function simulateTyping(to: string) {
-  const msg = await client.messages.create({
+  await client.messages.create({
     from: config.twilio.whatsappNumber,
     to: `whatsapp:${to}`,
     body: "Typing…",
   });
-
-  await new Promise(r => setTimeout(r, 1200));
-  await client.messages(msg.sid).remove();
 }
 
 /**
@@ -50,33 +47,17 @@ export async function downloadMedia(url: string): Promise<Buffer> {
   return Buffer.from(response.data);
 }
 
-/**
- * Action buttons (SOS always present)
- */
-export async function sendActionButtons(to: string) {
+export async function sendWhatsAppWithActions(
+  to: string,
+) {
+  const formattedTo = to.startsWith("whatsapp:")
+    ? to
+    : `whatsapp:${to}`;
+
   await client.messages.create({
     from: config.twilio.whatsappNumber,
-    to: `whatsapp:${to}`,
-    ...(({ interactive: {
-      type: "button",
-      body: { text: "How can I help you right now?" },
-      action: {
-        buttons: [
-          {
-            type: "reply",
-            reply: { id: "ACTION_SOS", title: "🚨 Emergency Help" },
-          },
-          {
-            type: "reply",
-            reply: { id: "ACTION_SYMPTOMS", title: "🩺 Describe Symptoms" },
-          },
-          {
-            type: "reply",
-            reply: { id: "ACTION_ADD_CONTACT", title: "➕ Add Contact" },
-          },
-        ],
-      },
-    },
-  } as any)),
+    to: formattedTo,
+    contentSid: 'HXd26015a538efd064fa9f544ca53bef83',
   });
 }
+
