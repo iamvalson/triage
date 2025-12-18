@@ -36,7 +36,7 @@ const Navbar = () => {
 
           <div className="bg-black flex items-center h-9 px-4 rounded-full hover:scale-105 transition-transform">
             <a
-              href="https://wa.me/+14155238886"
+              href="https://wa.me/+14155238886?text=join%20interest-her"
               className="text-primary font-bold text-sm"
             >
               Start Chat
